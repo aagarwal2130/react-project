@@ -1,0 +1,33 @@
+@import "../../global/css/Mixins";
+
+.weather-container {
+  height: 100%;
+  margin: 10px 20px;
+  padding: 20px;
+  flex: 1;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .temperature {
+      font-size: 40px;
+    }
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      padding-bottom: 20px;
+      padding: 5px 0;
+      border-bottom: 1px solid #4e5165;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  :last-child {
+    border-bottom: none;
+  }
+  img {
+    width: 40%;
+  }
+}
