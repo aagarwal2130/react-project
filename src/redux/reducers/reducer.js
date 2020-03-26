@@ -1,8 +1,10 @@
-import location from "./location";
-import headlines from "./headlines";
+import location from "./locationReducer";
+import headlines from "./headlinesReducer";
+import weather from "./weatherReducer";
 import { combineReducers } from "redux";
 
 export default combineReducers({
   location,
-  headlines
+  headlines,
+  weather
 });

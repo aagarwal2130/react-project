@@ -12,25 +12,19 @@ class Headlines extends React.Component {
   }
 
   render() {
-    const {
-      isLoading,
-      articlesLoaded,
-      articlesSearched,
-      headlines,
-      searchTerm
-    } = this.props;
+    const { isLoading, isSuccess, headlines, searchTerm } = this.props;
+
     return (
       <div className="headlines-container">
-        {isLoading && <img src={logo} alt="logo" className="loader" />}
-        {!isLoading && !articlesLoaded && headlines.length === 0 && (
+        {isLoading ? (
+          <img src={logo} alt="logo" className="loader" />
+        ) : !isSuccess ? (
           <Error message="Error in retrieving results at this moment."></Error>
-        )}
-        {!isLoading && articlesSearched && headlines.length === 0 && (
+        ) : headlines.length === 0 ? (
           <Error
             message={`No results found for search term "${searchTerm}"`}
           ></Error>
-        )}
-        {headlines.length > 0 &&
+        ) : (
           headlines.map((headline, index) => {
             const imageSrc = headline.urlToImage
               ? headline.urlToImage
@@ -57,7 +51,8 @@ class Headlines extends React.Component {
                 </div>
               </div>
             );
-          })}
+          })
+        )}
       </div>
     );
   }
@@ -66,8 +61,7 @@ class Headlines extends React.Component {
 const mapStateToProps = state => ({
   country: state.location.country,
   isLoading: state.headlines.isLoading,
-  articlesLoaded: state.headlines.articlesLoaded,
-  articlesSearched: state.headlines.articlesSearched,
+  isSuccess: state.headlines.isSuccess,
   headlines: state.headlines.articles,
   searchTerm: state.headlines.searchTerm
 });

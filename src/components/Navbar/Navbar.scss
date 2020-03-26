@@ -2,10 +2,11 @@
   background-color: #191c24;
   margin-bottom: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+
   .search-container {
     max-width: 720px;
-    width: 100%;
+    width: 80%;
     .search-form {
       position: relative;
       width: calc(100% - 40px);

@@ -1,8 +1,6 @@
 const initialState = {
   isLoading: true,
-  articlesLoaded: false,
-  articlesSearched: false,
-  isInvalidSearch: false,
+  isSuccess: false,
   articles: [],
   searchTerm: ""
 };
@@ -12,16 +10,14 @@ export default (state = initialState, action) => {
     return {
       ...state,
       isLoading: false,
-      articlesLoaded: true,
-      articlesSearched: false,
+      isSuccess: true,
       articles: action.payload.articles
     };
   } else if (action.type === "SEARCH_ARTICLES_SUCCESS") {
     return {
       ...state,
       isLoading: false,
-      articlesLoaded: true,
-      articlesSearched: true,
+      isSuccess: true,
       articles: action.payload.articles,
       searchTerm: action.payload.searchTerm
     };
@@ -29,8 +25,7 @@ export default (state = initialState, action) => {
     return {
       ...state,
       isLoading: false,
-      articlesLoaded: false,
-      articlesSearched: false
+      isSuccess: false
     };
   } else {
     return state;
