@@ -1,14 +1,61 @@
 import axios from "axios";
-import { LOCATION_API, HEADLINES_API, WEATHER_API } from "./Constants";
+import * as services from "./Constants";
+import * as actions from "../redux/Actions";
 
-export const getLocation = () => axios.get(LOCATION_API.url);
+export const getLocation = () => {
+  return dispatch => {
+    axios
+      .get(services.LOCATION_API.url)
+      .then(success => {
+        dispatch(actions.setSuccessLocation(success.data));
+      })
+      .catch(error => {
+        dispatch(actions.setErrorLocation());
+      });
+  };
+};
 
-export const getHeadlines = queryParams =>
-  axios.get(HEADLINES_API.url, {
-    params: { ...HEADLINES_API.queryParams, ...queryParams }
-  });
+export const getArticles = queryParams => {
+  return dispatch => {
+    axios
+      .get(services.HEADLINES_API.url, {
+        params: { ...services.HEADLINES_API.queryParams, ...queryParams }
+      })
+      .then(success => {
+        //  throw new Error();
+        success.data.searchTerm = "";
+        dispatch(actions.setSuccessArticles(success.data));
+      })
+      .catch(error => {
+        dispatch(actions.setErrorArticles());
+      });
+  };
+};
 
-export const getWeather = queryParams =>
-  axios.get(WEATHER_API.url, {
-    params: { ...WEATHER_API.queryParams, ...queryParams }
-  });
+export const searchHeadlines = queryParams => {
+  return dispatch => {
+    axios
+      .get(services.SEARCH_API.url, {
+        params: { ...services.SEARCH_API.queryParams, ...queryParams }
+      })
+      .then(success => {
+        success.data.searchTerm = queryParams.q;
+        dispatch(actions.setSearchArticles(success.data));
+      })
+      .catch(error => {
+        dispatch(actions.setErrorArticles());
+      });
+  };
+};
+
+export const getWeather = queryParams => {
+  return dispatch => {
+    axios
+      .get(services.WEATHER_API.url, {
+        params: { ...services.WEATHER_API.queryParams, ...queryParams }
+      })
+      .then(success => {
+        dispatch(actions.setWeather(success.data));
+      });
+  };
+};
