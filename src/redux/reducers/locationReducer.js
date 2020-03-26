@@ -9,13 +9,15 @@ export default (state = intitalState, action) => {
     return {
       ...state,
       isSuccess: true,
-      country: action.payload.countryCode
+      country: action.payload.countryCode,
+      city: action.payload.city
     };
   } else if (action.type === "LOCATION_ERROR") {
     return {
       ...state,
       isSuccess: true,
-      country: "IN"
+      country: "IN",
+      city: "Bengaluru"
     };
   } else {
     return state;

@@ -22,6 +22,6 @@ export const setSearchArticles = payload => ({
 });
 
 export const setWeather = payload => ({
-  type: "SET_WEATHER",
+  type: "WEATHER_SUCCESS",
   payload
 });

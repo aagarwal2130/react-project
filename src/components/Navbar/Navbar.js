@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { connect } from "react-redux";
+import Weather from "../Weather/Weather";
 import { searchHeadlines } from "../../global/Services";
 import "./Navbar.scss";
 
@@ -12,7 +13,6 @@ class Navbar extends React.Component {
   };
 
   handleSearchTerm = event => {
-    event.preventDefault();
     this.props.searchHeadlines({ q: this.searchTerm.value });
   };
 
@@ -33,13 +33,18 @@ class Navbar extends React.Component {
             <FaSearch className="search-icon" onClick={this.handleSearchTerm} />
           </div>
         </div>
+        {this.props.isSuccess && <Weather></Weather>}
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  isSuccess: state.location.isSuccess
+});
+
 const mapDispatchToProps = {
   searchHeadlines
 };
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

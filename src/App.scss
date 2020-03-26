@@ -1,49 +1,52 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+body {
   font-family: "Poppins", sans-serif;
   background-color: #000000;
   color: #ffffff;
-  .navbar {
-    background-color: #191c24;
-    .button {
-      background-color: #191c24;
-      color: #ffffff;
-    }
-  }
-  h4 {
-    color: #ffffff;
-  }
-  ul,
-  p {
-    color: #9295a2;
-  }
-  .headlines-content {
-    background-color: #191c24;
-  }
-  .weather-container {
-    background-color: #191c24;
-    .header {
-      color: #ffffff;
-    }
-  }
-  .loader {
-    animation: rotation 3s infinite linear;
-    width: 200px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1140px;
     margin: auto;
-  }
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
+    .navbar {
+      background-color: #191c24;
+      .button {
+        background-color: #191c24;
+        color: #ffffff;
+      }
     }
-    to {
-      transform: rotate(359deg);
+    h4 {
+      color: #ffffff;
+    }
+    ul,
+    p {
+      color: #9295a2;
+    }
+    .headlines-content {
+      background-color: #191c24;
+    }
+    .weather-container {
+      background-color: #191c24;
+      .header {
+        color: #ffffff;
+      }
+    }
+    .loader {
+      animation: rotation 3s infinite linear;
+      width: 200px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+    }
+    from {
+      @keyframes rotation {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(359deg);
+      }
     }
   }
 }
