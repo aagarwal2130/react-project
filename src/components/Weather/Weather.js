@@ -1,34 +1,25 @@
 import React from "react";
+import { connect } from "react-redux";
 import { getWeather } from "../../global/Services";
 import { getTemperature } from "../../global/Utils";
-import data from "../../data/weather.json";
 import { isEmpty } from "lodash";
 import "./Weather.scss";
 import Moment from "react-moment";
 
 class Weather extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { weather: {} };
+  componentDidMount() {
+    this.props.getWeather({ q: this.props.city });
   }
 
-  componentDidMount() {
-    getWeather({ q: this.props.city })
-      .then(weather => weather.data)
-      .then(weather => {
-        this.setState({
-          weather
-        });
-      })
-      .catch(error => {
-        this.setState({ weather: data });
-      });
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
   }
+
   render() {
-    const { weather } = this.state;
+    const { weather } = this.props;
 
     return (
-      !isEmpty(this.state.weather) && (
+      !isEmpty(weather) && (
         <div className="weather-container">
           <div className="header">
             <div>
@@ -96,4 +87,13 @@ class Weather extends React.Component {
   }
 }
 
-export default Weather;
+const mapStateToProps = state => ({
+  city: state.city,
+  weather: state.weather
+});
+
+const mapDispatchToProps = {
+  getWeather
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Weather);
