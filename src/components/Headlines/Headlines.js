@@ -13,6 +13,29 @@ class Headlines extends React.Component {
 
   render() {
     const { isLoading, isSuccess, headlines, searchTerm } = this.props;
+    const articles = headlines.map((headline, index) => {
+      const imageSrc = headline.urlToImage
+        ? headline.urlToImage
+        : require("../../assets/headlines-placeholder.jpg");
+
+      return (
+        <div className="headlines-content" key={index}>
+          <img src={imageSrc} alt="Headlines"></img>
+          <div className="description">
+            <a href={headline.url} rel="noopener noreferrer" target="_blank">
+              <h4>{headline.title}</h4>
+            </a>
+            <ul>
+              {headline.author && <li>{headline.author}</li>}
+              <li>
+                <Moment from={new Date()}>{headline.publishedAt}</Moment>
+              </li>
+            </ul>
+            <p>{headline.description}</p>
+          </div>
+        </div>
+      );
+    });
 
     return (
       <div className="headlines-container">
@@ -25,33 +48,10 @@ class Headlines extends React.Component {
             message={`No results found for search term "${searchTerm}"`}
           ></Error>
         ) : (
-          headlines.map((headline, index) => {
-            const imageSrc = headline.urlToImage
-              ? headline.urlToImage
-              : require("../../assets/headlines-placeholder.jpg");
-
-            return (
-              <div className="headlines-content" key={index}>
-                <img src={imageSrc} alt="Headlines"></img>
-                <div className="description">
-                  <a
-                    href={headline.url}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <h4>{headline.title}</h4>
-                  </a>
-                  <ul>
-                    {headline.author && <li>{headline.author}</li>}
-                    <li>
-                      <Moment from={new Date()}>{headline.publishedAt}</Moment>
-                    </li>
-                  </ul>
-                  <p>{headline.description}</p>
-                </div>
-              </div>
-            );
-          })
+          <div>
+            <h4>Headlines</h4>
+            {articles}
+          </div>
         )}
       </div>
     );
