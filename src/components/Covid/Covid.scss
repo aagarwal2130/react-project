@@ -1,0 +1,17 @@
+.covid-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  margin: auto;
+  .world-stats,
+  .country-stats {
+    display: flex;
+    .covid-block {
+      background-color: #191c24;
+      flex: 1;
+      padding: 30px;
+      margin-right: 30px;
+    }
+  }
+}

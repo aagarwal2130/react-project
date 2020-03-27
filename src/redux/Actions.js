@@ -25,3 +25,13 @@ export const setWeather = payload => ({
   type: "WEATHER_SUCCESS",
   payload
 });
+
+export const setCovidWorldStats = payload => ({
+  type: "COVID_WORLD_STATS_SUCCESS",
+  payload
+});
+
+export const setCovidCountryStats = payload => ({
+  type: "COVID_COUNTRY_STATS_SUCCESS",
+  payload
+});

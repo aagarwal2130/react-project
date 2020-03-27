@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
+import CovidStats from "./components/Covid/CovidStats";
 import Headlines from "./components/Headlines/Headlines";
 import { getLocation } from "./global/Services";
 import "./App.scss";
@@ -17,6 +18,7 @@ class App extends React.Component {
         {this.props.isSuccess && (
           <React.Fragment>
             <Navbar />
+            <CovidStats />
             <Headlines></Headlines>
           </React.Fragment>
         )}

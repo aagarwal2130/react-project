@@ -59,3 +59,22 @@ export const getWeather = queryParams => {
       });
   };
 };
+
+export const getCovidWorldStats = () => {
+  return dispatch => {
+    axios.get(services.COVID_STATS_WORLD_API.url).then(success => {
+      dispatch(actions.setCovidWorldStats(success.data));
+    });
+  };
+};
+
+export const getCovidCountryStats = country => {
+  console.log("asdasds");
+  return dispatch => {
+    axios
+      .get(`${services.COVID_STATS_COUNTRY_API.url}${country}`)
+      .then(success => {
+        dispatch(actions.setCovidCountryStats(success.data));
+      });
+  };
+};

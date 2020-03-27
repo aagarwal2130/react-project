@@ -23,3 +23,13 @@ export const WEATHER_API = {
     appid: "411b9bf1a87dcc57bce930bb7f460be2"
   }
 };
+
+export const COVID_STATS_WORLD_API = {
+  url: "https://covid19.mathdro.id/api",
+  queryParams: {}
+};
+
+export const COVID_STATS_COUNTRY_API = {
+  url: "https://covid19.mathdro.id/api/countries/",
+  queryParams: {}
+};
